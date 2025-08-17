@@ -32,7 +32,7 @@ jobs:
           cd qa
           terraform fmt
           terraform init 
-          terraform plan -var='example_api_key=${{ secrets.EXAMPLE_API_KEY }}'
+          terraform plan
 
   deploy:
     name: Terraform Deploy
@@ -57,4 +57,4 @@ jobs:
           cd qa
           terraform fmt
           terraform init
-          terraform apply -var='example_api_key=${{ secrets.EXAMPLE_API_KEY }}' --auto-approve=true
+          terraform apply --auto-approve=true
