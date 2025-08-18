@@ -1,1 +1,1 @@
-bucket_name = "static-website-bucket-00"
+bucket_name = "ksn-static-website-bucket-001"
