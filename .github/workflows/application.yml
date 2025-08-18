@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x] # Add desired Node.js versions
+        node-version: [20.x] # Add desired Node.js versions
 
     steps:
     - uses: actions/checkout@v4
