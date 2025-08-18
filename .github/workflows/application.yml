@@ -27,4 +27,5 @@ jobs:
         npm i 
         npm i front-matter marked@latest highlight.js@latest
         npm run build
+        ls -l public/
 
