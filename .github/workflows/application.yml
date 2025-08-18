@@ -22,8 +22,7 @@ jobs:
 
     - name: Build
       run: |
-        npm i
-        cd frontend
-        npm i 
+        cd app
+        npm i front-matter marked highlight.js
         npm run build
         
