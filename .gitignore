@@ -1,3 +1,5 @@
+public/post*
+public/index.html
 node_modules
 *.terraform*
 *.tfstate*
