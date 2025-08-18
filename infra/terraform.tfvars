@@ -1,0 +1,1 @@
+bucket_name = "static-website-bucket-01"
