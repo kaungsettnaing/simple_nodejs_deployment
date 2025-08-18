@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Space+Grotesk:400,700&display=swap");
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: #222;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 1rem;
+}
+
+pre code {
+  display: block;
+  padding: 1rem;
+  background: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 8px;
+  overflow-x: auto;
+}
