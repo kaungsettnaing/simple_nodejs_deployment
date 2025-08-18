@@ -12,6 +12,7 @@ async function buildSite() {
 
   // read markdown files from content
   const files = fs.readdirSync(config.dev.contentDir);
+  console.log('Files found in contentDir:', files);
 
   // create posts asynchronously
   const posts = await Promise.all(files.map(file => createPost(file)));
