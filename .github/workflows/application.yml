@@ -27,6 +27,6 @@ jobs:
       run: |
         cd app
         ls -l content
-        npm i front-matter marked highlight.js
+        npm i front-matter marked highlight.js@latest
         npm run build
 
