@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x] # Add desired Node.js versions
 
     steps:
     - uses: actions/checkout@v4
@@ -25,4 +28,4 @@ jobs:
         cd app
         npm i front-matter marked highlight.js
         npm run build
-        
+
