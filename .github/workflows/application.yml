@@ -38,5 +38,5 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync app/public s3://nodejs-static-website-bucket-01 --delete
+        aws s3 sync app/public s3://nodejs-static-website-bucket-01 --delete --acl public-read
 
