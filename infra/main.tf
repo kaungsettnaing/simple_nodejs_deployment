@@ -20,7 +20,7 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "static_website_bucket" {
   bucket = var.bucket_name
 
   tags = {
@@ -29,16 +29,16 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
-resource "aws_s3_bucket_ownership_controls" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
+resource "aws_s3_bucket_ownership_controls" "static_website_bucket" {
+  bucket = aws_s3_bucket.static_website_bucket.id
 
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
+resource "aws_s3_bucket_public_access_block" "static_website_bucket" {
+  bucket = aws_s3_bucket.static_website_bucket.id
 
   block_public_acls       = false
   block_public_policy     = true
