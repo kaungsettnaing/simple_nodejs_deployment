@@ -1,1 +1,1 @@
-bucket_name = "static-website-bucket-02"
+bucket_name = "static-website-bucket-01"

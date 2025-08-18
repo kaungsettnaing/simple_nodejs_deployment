@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-    paths: ["infra/**"]
+    paths: ["infra/aws-backend/**"]
 
   pull_request:
     branches: ["main"]
-    paths: ["infra/**"]
+    paths: ["infra/aws-backend/**"]
 
 jobs:
   plan:
@@ -33,6 +33,7 @@ jobs:
       - name: Initialise project and view terraform plan
         run: |
           cd infra
+          cd aws-backend
           terraform fmt
           terraform init 
           terraform plan
@@ -59,6 +60,7 @@ jobs:
       - name: Initialise project and deploy terraform
         run: |
           cd infra
+          cd aws-backend
           terraform fmt
           terraform init
           terraform apply --auto-approve=true
