@@ -1,10 +1,7 @@
 const hljs = require('highlight.js');
 
-let markedPromise = import('marked');
-
 async function getMarked() {
-  const markedModule = await markedPromise;
-  const marked = markedModule.marked || markedModule.default || markedModule;
+  const { marked } = await markedPromise;
   marked.setOptions({
     highlight: function(code) {
       return hljs.highlightAuto(code).value;
