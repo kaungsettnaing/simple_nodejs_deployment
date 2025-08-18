@@ -15,21 +15,20 @@ jobs:
     name: Terraform plan
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 20.x
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Initialise project and view terraform plan
         run: |
-          cd terraform 
-          cd qa
+          cd infra
           terraform fmt
           terraform init 
           terraform plan
@@ -40,21 +39,20 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 20.x
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Initialise project and deploy terraform
         run: |
-          cd terraform
-          cd qa
+          cd infra
           terraform fmt
           terraform init
           terraform apply --auto-approve=true
