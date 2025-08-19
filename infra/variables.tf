@@ -8,3 +8,8 @@ variable "bucket_name" {
   description = "s3 bucket name for static website"
   type        = string
 }
+
+variable "oac_cloudfront_name" {
+  description = "Origin Access Control name for CloudFront"
+  type        = string
+}
