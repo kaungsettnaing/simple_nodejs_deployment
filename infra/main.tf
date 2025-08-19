@@ -104,12 +104,12 @@ data "aws_iam_policy_document" "allow_access_from_cloudfront" {
     }
 
     actions   = ["s3:GetObject"]
-    resources = ["arn:aws:s3:::${aws_s3_bucket.static_website_bucket.id}/*"]
+    resources = ["${aws_s3_bucket.static_website_bucket.arn}/*"]
 
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values   = ["arn:aws:cloudfront::478340992676:distribution/E26TUU2N2I0E8T"]
+      values   = [aws_cloudfront_distribution.s3_distribution.arn]
     }
   }
 }
