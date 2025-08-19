@@ -47,83 +47,36 @@ This project demonstrates a complete DevOps workflow by combining Infrastructure
                      └────────────────────────────────┘
 
 
-## Repository Structure
+## 📂 Repository Structure
 
-├── app
-│   ├── config.js
-│   ├── content
-│   ├── node_modules
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── public
-│   └── src
-├── aws-backend-infra
-│   ├── main.tf
-│   └── terraform.tfstate
-├── infra
-│   ├── aws-backend
-│   ├── main.tf
-│   ├── terraform.tfstate
-│   ├── terraform.tfstate.backup
-│   ├── terraform.tfvars
-│   └── variables.tf
-└── README.md
+
+.
+├── app                     # Node.js application source code
+│   ├── config.js           # App configuration
+│   ├── content             # Static content
+│   ├── node_modules        # Installed dependencies
+│   ├── package.json        # Node.js project metadata and scripts
+│   ├── package-lock.json   # Dependency lock file
+│   ├── public              # Build output directory (deployment to S3)
+│   └── src                 # Application source code
+│
+├── aws-backend-infra       # Terraform for remote backend (S3 + DynamoDB)
+│   ├── main.tf
+│   └── terraform.tfstate
+│
+├── infra                   # Terraform for infrastructure provisioning
+│   ├── main.tf             # Main infra resources (e.g., S3, CloudFront)
+│   ├── terraform.tfstate
+│   ├── terraform.tfstate.backup
+│   ├── terraform.tfvars    # Variable values
+│   └── variables.tf        # Input variable definitions
+│
+└── README.md               # Project documentation
+
 
 ## Workflow
 
-flowchart TD
-
-    subgraph DEV["Developer Actions"]
-        A["Developer Push Code"]
-    end
-
-    %% ---------------------------
-    %% Backend Infra (Remote State)
-    %% ---------------------------
-    subgraph BACKEND["Backend Infra (/aws-backend-infra)"]
-        n2["GitHub Repo: Backend Terraform"]
-        n3["GitHub Actions: Terraform Apply"]
-        n4["AWS S3 Bucket + DynamoDB (Remote State)"]
-    end
-
-    %% ---------------------------
-    %% Frontend Infra
-    %% ---------------------------
-    subgraph FRONTEND["Frontend Infra (/infra)"]
-        B["GitHub Repo: Terraform"]
-        C["GitHub Actions: Terraform Apply"]
-        D["AWS S3 Bucket Created"]
-    end
-
-    %% ---------------------------
-    %% Application Build & Deploy
-    %% ---------------------------
-    subgraph APP["Node.js App (/app)"]
-        n1["GitHub Repo: Node.js"]
-        E["GitHub Actions: Build Node.js"]
-        F["Deploy /public to S3"]
-    end
-
-    %% ---------------------------
-    %% Website Delivery
-    %% ---------------------------
-    subgraph DELIVERY["Website Hosting & Distribution"]
-        G["Static Website Hosting (S3)"]
-        H["CloudFront: Future Updates"]
-    end
-
-    %% Connections
-    A -- "/infra" --> B
-    B --> C --> D
-
-    A -- "/app" --> n1
-    n1 --> E --> F
-    D --> G
-    F --> G
-    G --> H
-
-    A -- "/aws-backend-infra" --> n2
-    n2 --> n3 --> n4
+<img width="3840" height="3074" alt="Untitled diagram _ Mermaid Chart-2025-08-19-052157" src="https://github.com/user-attachments/assets/6f97b304-066c-41fc-86ba-dc01d66953ca" />
 
 ## License
 
