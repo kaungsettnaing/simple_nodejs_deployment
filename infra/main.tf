@@ -1,10 +1,10 @@
 terraform {
 
   backend "s3" {
-    bucket         = "ksn-terraform-tf-state"
-    region         = "us-east-1"
+    bucket         = var.backend_bucket_name
+    region         = var.region
     key            = "infra/terraform.tfstate"
-    dynamodb_table = "terraform-state-locking"
+    dynamodb_table = var.backend_dynamodb_table_name
     encrypt        = true
   }
 
@@ -46,8 +46,8 @@ resource "aws_s3_bucket_public_access_block" "static_website_bucket" {
   restrict_public_buckets = true
 }
 
-resource "aws_cloudfront_origin_access_control" "oac-ksn-static" {
-  name                              = "oac-ksn-static"
+resource "aws_cloudfront_origin_access_control" "oac-static" {
+  name                              = var.oac_cloudfront_name
   description                       = "static website s3 Policy"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
@@ -61,7 +61,7 @@ locals {
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              = aws_s3_bucket.static_website_bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.oac-ksn-static.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac-static.id
     origin_id                = local.s3_origin_id
   }
 
