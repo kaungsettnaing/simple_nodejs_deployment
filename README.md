@@ -41,7 +41,7 @@ This project demonstrates a complete DevOps workflow by combining Infrastructure
                                       │
                                       ▼
                      ┌────────────────────────────────┐
-                     │   CloudFront (Future Updates)  │
+                     │   CloudFront                   │
                      │   - HTTPS by default           │
                      │   - Global edge cache          │
                      └────────────────────────────────┘
@@ -76,7 +76,7 @@ This project demonstrates a complete DevOps workflow by combining Infrastructure
 
 ## Workflow
 
-<img width="3840" height="3074" alt="Untitled diagram _ Mermaid Chart-2025-08-19-052157" src="https://github.com/user-attachments/assets/6f97b304-066c-41fc-86ba-dc01d66953ca" />
+<img width="3840" height="3074" alt="Untitled diagram _ Mermaid Chart-2025-08-19-080321" src="https://github.com/user-attachments/assets/7fd8e3b4-12ac-4713-86be-ac1f8b16f8cc" />
 
 ## License
 
