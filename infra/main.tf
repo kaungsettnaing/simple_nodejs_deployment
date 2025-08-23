@@ -20,7 +20,7 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "static_website_bucket" {
+resource "aws_s3_bucket" "static_website" {
   bucket = var.bucket_name
 
   tags = {
@@ -29,16 +29,16 @@ resource "aws_s3_bucket" "static_website_bucket" {
   }
 }
 
-resource "aws_s3_bucket_ownership_controls" "static_website_bucket" {
-  bucket = aws_s3_bucket.static_website_bucket.id
+resource "aws_s3_bucket_ownership_controls" "static_website" {
+  bucket = aws_s3_bucket.static_website.id
 
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "static_website_bucket" {
-  bucket = aws_s3_bucket.static_website_bucket.id
+resource "aws_s3_bucket_public_access_block" "static_website" {
+  bucket = aws_s3_bucket.static_website.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -46,8 +46,8 @@ resource "aws_s3_bucket_public_access_block" "static_website_bucket" {
   restrict_public_buckets = true
 }
 
-resource "aws_cloudfront_origin_access_control" "oac-static" {
-  name                              = var.oac_cloudfront_name
+resource "aws_cloudfront_origin_access_control" "oac_static" {
+  name                              = var.oac_name
   description                       = "static website s3 Policy"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
@@ -60,8 +60,8 @@ locals {
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.static_website_bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.oac-static.id
+    domain_name              = aws_s3_bucket.static_website.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac_static.id
     origin_id                = local.s3_origin_id
   }
 
@@ -104,7 +104,7 @@ data "aws_iam_policy_document" "allow_access_from_cloudfront" {
     }
 
     actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.static_website_bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.static_website.arn}/*"]
 
     condition {
       test     = "StringEquals"
@@ -115,6 +115,6 @@ data "aws_iam_policy_document" "allow_access_from_cloudfront" {
 }
 
 resource "aws_s3_bucket_policy" "allow_access_from_cloudfront" {
-  bucket = aws_s3_bucket.static_website_bucket.id
+  bucket = aws_s3_bucket.static_website.id
   policy = data.aws_iam_policy_document.allow_access_from_cloudfront.json
 }

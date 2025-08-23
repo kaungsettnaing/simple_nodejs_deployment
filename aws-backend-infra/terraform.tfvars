@@ -1,1 +1,1 @@
-backend_bucket_name = "ksn-terraform-tf-state"
+backend_name = "ksn_terraform_tf_state"

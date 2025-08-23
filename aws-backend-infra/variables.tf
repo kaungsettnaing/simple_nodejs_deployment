@@ -4,13 +4,13 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "backend_bucket_name" {
+variable "backend_name" {
   description = "S3 bucket name for Terraform backend"
   type        = string
 }
 
-variable "backend_dynamodb_table_name" {
+variable "backend_table_name" {
   description = "DynamoDB table name for Terraform state locking"
   type        = string
-  default     = "terraform-state-locking"
+  default     = "terraform_state_locking"
 }

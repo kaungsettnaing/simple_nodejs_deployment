@@ -9,7 +9,7 @@ variable "bucket_name" {
   type        = string
 }
 
-variable "oac_cloudfront_name" {
+variable "oac_name" {
   description = "Origin Access Control name for CloudFront"
   type        = string
 }
