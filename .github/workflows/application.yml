@@ -1,7 +1,7 @@
 name: NodeJS
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:    # Manually trigger the workflow from GitHub UI
   push:
     branches: [ "main" ]
     paths: ["app/**"]
@@ -35,7 +35,7 @@ jobs:
         ls -l public/
 
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@main # Or a specific version
+      uses: aws-actions/configure-aws-credentials@main
       with:
         role-to-assume: arn:aws:iam::478340992676:role/Nodejs_SimpleRole
         aws-region: us-east-1
