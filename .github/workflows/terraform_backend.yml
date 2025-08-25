@@ -34,8 +34,7 @@ jobs:
           aws-region: us-east-1
       - name: Initialise project and view terraform plan
         run: |
-          cd infra
-          cd aws-backend
+          cd aws-backend-infra
           terraform fmt
           terraform init 
           terraform plan
@@ -60,8 +59,7 @@ jobs:
           aws-region: us-east-1
       - name: Initialise project and deploy terraform
         run: |
-          cd infra
-          cd aws-backend
+          cd aws-backend-infra
           terraform fmt
           terraform init
           terraform apply --auto-approve=true
