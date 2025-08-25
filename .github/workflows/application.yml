@@ -42,5 +42,4 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync app/public s3://${{ env.bucket_name }} --delete --acl public-read
-
+        aws s3 sync app/public s3://${{ env.bucket_name }} --delete
