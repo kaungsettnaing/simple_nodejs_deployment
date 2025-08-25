@@ -25,10 +25,7 @@ module "s3_bucket" {
   version = "5.5.0"
 
   bucket = var.backend_name
-  acl    = "private"
-
-  control_object_ownership = false
-  object_ownership         = "BucketOwnerPreferred"
+  force_destroy = true
 
   tags = {
     Name        = "NodeJS Static Website Bucket"
