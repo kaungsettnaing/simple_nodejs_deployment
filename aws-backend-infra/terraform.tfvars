@@ -1,1 +1,1 @@
-backend_name = "ksn_terraform_tf_state"
+backend_name = "ksn_terraform_tf_state_1.0"
