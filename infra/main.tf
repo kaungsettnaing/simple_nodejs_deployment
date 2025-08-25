@@ -3,7 +3,6 @@ module "s3_bucket" {
   version = "5.5.0"
 
   bucket = var.bucket_name
-  acl    = "private"
 
   control_object_ownership = false
   object_ownership         = "BucketOwnerPreferred"
